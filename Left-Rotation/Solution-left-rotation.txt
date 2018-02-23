@@ -1,0 +1,53 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+   // static int [] a;
+  //  static int counter = 0;
+    
+    
+    static int[] leftRotation(int[] a, int d) {
+        HashMap<Integer, Integer> hmap = new HashMap<Integer, Integer>();
+        int size = a.length;
+        int newPosition;
+        int[] result = new int [size];
+        for(int i = 0 ; i < size ; i++){
+            int h = i - d;
+            if (h < 0){
+                h = Math.abs(h);
+                newPosition = size - h ;
+            }else{
+                newPosition = h;
+            }
+            if (newPosition == size) newPosition = 0;
+            result[newPosition] = a[i];
+            
+        }
+        return result ;
+        
+    }
+    
+
+    public static void main(String[] args) {
+        Scanner in = new Scanner(System.in);
+        
+        int n = in.nextInt();
+        int d = in.nextInt();
+        int[] a = new int[n];
+        for(int a_i = 0; a_i < n; a_i++){
+            a[a_i] = in.nextInt();
+        }
+        int[] result = leftRotation(a, d);
+        for (int i = 0; i < result.length; i++) {
+            System.out.print(result[i] + (i != result.length - 1 ? " " : ""));
+        }
+        System.out.println("");
+
+
+        in.close();
+    }
+}
