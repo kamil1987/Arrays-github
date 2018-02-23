@@ -1,0 +1,55 @@
+import java.io.*;
+import java.util.*;
+import java.text.*;
+import java.math.*;
+import java.util.regex.*;
+
+public class Solution {
+
+    public static void main(String[] args) {
+         Scanner in = new Scanner(System.in);
+         int n = in.nextInt();
+         int q = in.nextInt();
+         int lastAnswer = 0;
+         int [][] arr = new int [q][3];
+         ArrayList <ArrayList<Integer>> seqLists = new ArrayList <ArrayList<Integer>> ();
+
+        for (int i = 0 ; i < q ;i++){
+            for (int j = 0 ; j < 3 ; j++){
+                arr[i][j] = in.nextInt();
+            }
+       
+        }
+        for(int i = 0 ; i < n ;i++){
+            seqLists.add(new ArrayList<Integer>());
+           // for(int j =0; j < n ; j++) ( (ArrayList<Integer>) seqLists.get(i) ).add();
+        }
+
+        int p = 0;
+        for (int i = 0 ; i < q ;i++){      
+            //query 1
+                if (arr[i][0] == 1){
+                    int t = ( (arr[i][1] ^ lastAnswer) % n );
+                   if(t < seqLists.size() ) {
+                         ( (ArrayList<Integer>) seqLists.get(t) ).add(arr[i][2]);
+                  //     System.out.println(  (ArrayList<Integer>) seqLists.get(t)  );
+                       
+                   } 
+
+            //query 2        
+                } else if(arr[i][0] == 2){
+                    int t = ( (arr[i][1] ^ lastAnswer) % n );
+                    int size = seqLists.get(t).size();
+                //    System.out.println("lastAnswer: "  + lastAnswer + "   size " + size + "    t :" + t);
+                    int element = arr[i][2] % size;
+                    lastAnswer = ( (ArrayList<Integer>) seqLists.get(t) ).get(element) ;
+                    System.out.println(lastAnswer);   
+                }
+         
+        }
+        
+    }
+        
+        
+       
+}
